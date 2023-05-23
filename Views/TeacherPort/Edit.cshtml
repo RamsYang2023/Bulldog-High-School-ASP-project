@@ -1,0 +1,62 @@
+﻿@model BullDoghs.Models.tbCourseSection
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+<h1>Update Your Course Here:</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="CourseSectionID_PK" />
+            <div class="form-group">
+                <label asp-for="CourseTitle_FK" class="control-label">Course:</label>
+                <select asp-for="CourseTitle_FK" class="form-control" asp-items="ViewBag.CourseTitle_FK"></select>
+                <span asp-validation-for="CourseTitle_FK" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ClassRoom" class="control-label">Class room:</label>
+                <input asp-for="ClassRoom" class="form-control" />
+                <span asp-validation-for="ClassRoom" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Course_day" class="control-label">Class day:</label>
+                <input asp-for="Course_day" class="form-control" />
+                <span asp-validation-for="Course_day" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Course_time" class="control-label">Class time:</label>
+                <input asp-for="Course_time" class="form-control" />
+                <span asp-validation-for="Course_time" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AttendentNumber" class="control-label">Student number:</label>
+                <input asp-for="AttendentNumber" class="form-control" max="25"/>
+                <span asp-validation-for="AttendentNumber" class="text-danger"></span>
+            </div>
+            
+            <input type="hidden" asp-for="TeacherID_FK" />
+            @*<div class="form-group">
+                <label asp-for="TeacherID_FK" class="control-label"></label>
+                <select asp-for="TeacherID_FK" class="form-control" asp-items="ViewBag.TeacherID_FK"></select>
+                <span asp-validation-for="TeacherID_FK" class="text-danger"></span>
+            </div>*@
+            
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

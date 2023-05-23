@@ -1,0 +1,33 @@
+﻿@model BullDoghs.Models.tbCourseSection
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Bulldog High School - Course details</h1>
+<hr />
+
+<div>
+    <h1></h1>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.CourseTitle_FKNavigation.CourseTitle_PK):*@
+            Course:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CourseTitle_FKNavigation.CourseTitle_PK)
+        </dd>
+        <dt class="col-sm-2">
+            @*@Html.DisplayNameFor(model => model.CourseTitle_FKNavigation.Course_Description):*@
+            Cousre description:
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CourseTitle_FKNavigation.Course_Description)
+        </dd>
+
+    </dl>
+</div>
+
+<div>
+        <a asp-action="CourseView">Back to Course List</a>
+</div>

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<tbCourseSection>
+
+@{
+    ViewData["Title"] = "CourseView";
+}
+
+<h2>Overview of all Courses offered at Bulldog High School:</h2>
+
+<table class="table table-sm table-striped table-bordered" align="center">
+    <thead>
+        <tr style ="text-align: center">
+            <th>Course</th>
+            <th>Class day</th>
+            <th>Class time</th>
+            <th>Assigned Classroom</th>
+            <th>Student number</th>
+            <th>Teacher Name</th>
+            <th>Teacher's' Email</th>
+            <th>Teacher's Phone #</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td style="text-align: center">
+                    <a asp-action="Details" asp-route-id="@p.CourseSectionID_PK">@p.CourseTitle_FKNavigation.CourseTitle_PK</a>
+                </td>
+                <td style="text-align: center">@p.Course_day</td>
+                <td style="text-align: center">@p.Course_time</td>
+                <td style="text-align: center">@p.ClassRoom</td>
+                <td style="text-align: center">@p.AttendentNumber</td>
+                <td style="text-align: center">@p.TeacherID_FKNavigation.TeacherName</td>
+                <td style="text-align: center">@p.TeacherID_FKNavigation.Email</td>
+                <td style="text-align: center">@p.TeacherID_FKNavigation.PhoneNumber</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

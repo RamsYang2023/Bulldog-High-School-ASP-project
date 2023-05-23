@@ -1,0 +1,72 @@
+﻿@model BullDoghs.Models.LoginInput
+
+@{
+    ViewData["Title"] = "login";
+}
+
+<h1>Login to Bulldog High School System</h1>
+
+<hr />
+
+
+@* message for new user after they has successfully created an account*@
+
+@if (TempData["success"] != null)
+{
+        <div class="alert alert-success">@TempData["success"]</div>
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Login" method="post">
+
+            @* Store the returnURL as a hidden field*@
+
+            <input type="hidden" asp-for="ReturnURL" />
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="UserName" class="control-label">User Name (Using Bulldog High School Email)</label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="UserPassword" class="control-label">Password</label>
+                <input asp-for="UserPassword" class="form-control" />
+                <span asp-validation-for="UserPassword" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                @Html.AntiForgeryToken()<input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+@*If credentials are invalid*@
+
+@if (ViewData["message"] != null)
+{
+        <div class="alert alert-danger">@ViewData["message"]</div>
+}
+
+@*Get the identity associated with the claims principal *@
+
+@{
+    bool identity = Context.User.Identity?.IsAuthenticated ?? false;
+}
+
+@if (!identity)
+{
+        <div>
+        <a asp-action="SignUp" asp-controller="Account">Sign Up A New Account</a>
+        </div>
+}
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

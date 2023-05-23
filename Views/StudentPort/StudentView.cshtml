@@ -1,0 +1,58 @@
+﻿@model IEnumerable<BullDoghs.Models.tbRegistration>
+
+@{
+    ViewData["Title"] = "StudentView";
+    var identity = Context.User.Identity;
+}
+
+<h1>Registration records for student: @identity?.Name</h1>
+
+
+<table class="table">
+    <thead>
+        <tr style="text-align: center">
+            <th>Student Name</th>
+            <th>Registration ID</th>
+            <th>Course</th>
+            <th>GPA</th>
+            <th>Class Room</th>
+            <th>Status</th>
+            <th>Teacher Name</th>
+            <th>Teacher Email</th>
+            <th>Teacher Phone</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            <tr style="text-align: center">
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentID_FKNavigation.StudentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseRegistrationID_PK)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseSectionID_FKNavigation.CourseTitle_FKNavigation.CourseTitle_PK)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseScore)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseSectionID_FKNavigation.ClassRoom)    
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseStatus)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.CourseSectionID_FKNavigation.TeacherID_FKNavigation.TeacherName)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.CourseSectionID_FKNavigation.TeacherID_FKNavigation.Email)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.CourseSectionID_FKNavigation.TeacherID_FKNavigation.PhoneNumber)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
